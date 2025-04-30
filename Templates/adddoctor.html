@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Doctor{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Add New Doctor</h2>
+
+    <form method="POST" action="{% url 'Admin:adddoctor' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{ form.email.value }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" value="{{ form.password.value }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ form.name.value }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input type="number" class="form-control" id="age" name="age" value="{{ form.age.value }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="patients" class="form-label">Patients</label>
+            <input type="number" class="form-control" id="patients" name="patients" value="{{ form.patents.value }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="experience" class="form-label">Experience</label>
+            <input type="text" class="form-control" id="experience" name="experience" value="{{ form.experence.value }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="specialization" class="form-label">Specialization</label>
+            <input type="text" class="form-control" id="specialization" name="specialization" value="{{ form.specialization.value }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="education" class="form-label">Education</label>
+            <input type="text" class="form-control" id="education" name="education" value="{{ form.education.value }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="about" class="form-label">About</label>
+            <textarea class="form-control" id="about" name="about" rows="3">{{ form.about.value }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Doctor</button>
+    </form>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}

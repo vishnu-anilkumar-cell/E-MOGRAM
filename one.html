@@ -1,0 +1,21 @@
+<html>
+   
+<body>
+    <script>
+const socket = new WebSocket('ws://127.0.0.1:8000/ws/some_url/');
+socket.onopen = function() {
+    console.log("WebSocket is open now.");
+};
+socket.onmessage = function(event) {
+    console.log("Received data: " + event.data);
+};
+socket.onclose = function() {
+    console.log("WebSocket is closed now.");
+};
+socket.onerror = function(error) {
+    console.error("WebSocket error: " + error);
+};
+</script>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Doctor{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Update Doctor Details</h2>
+
+    <form method="POST" action="{% url 'Admin:update_doctor' email=doctor.email %}">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" value="{{ form.password.value }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ form.name.value }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input type="number" class="form-control" id="age" name="age" value="{{ form.age.value }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="patients" class="form-label">Patients</label>
+            <input type="number" class="form-control" id="patients" name="patents" value="{{ form.patents.value }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="experience" class="form-label">Experience</label>
+            <input type="text" class="form-control" id="experience" name="experence" value="{{ form.experence.value }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="specialization" class="form-label">Specialization</label>
+            <input type="text" class="form-control" id="specialization" name="specialization" value="{{ form.specialization.value }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="education" class="form-label">Education</label>
+            <input type="text" class="form-control" id="education" name="education" value="{{ form.education.value }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="about" class="form-label">About</label>
+            <textarea class="form-control" id="about" name="about" rows="3">{{ form.about.value }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-select" id="status" name="status">
+                <option value="1" {% if form.status.value == 1 %}selected{% endif %}>Active</option>
+                <option value="0" {% if form.status.value == 0 %}selected{% endif %}>Inactive</option>
+            </select>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary">Update Doctor</button>
+    </form>
+</div>
+<BR>
+    <BR>
+        <BR>
+            <BR>
+{% endblock %}

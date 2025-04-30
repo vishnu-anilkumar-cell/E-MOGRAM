@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}All Doctors{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Users List</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doctor in users %}
+                <tr>
+                    <td>{{ doctor.name }}</td>
+                    <td>{{ doctor.email }}</td>
+                    <td>{{ doctor.age }}</td>
+                    <td>{{ doctor.gender }}</td>
+                    <td>{{ doctor.address }}</td>
+
+
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="11" class="text-center">No users available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

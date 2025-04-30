@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}User Posts{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">User Posts</h1>
+    <table class="table table-bordered table-striped mt-4">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">User</th>
+                <th scope="col">Email</th>
+                <th scope="col">Post</th>
+                <th scope="col">Posted Date</th>
+                <th scope="col">Emotion</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if posts %}
+                {% for post in posts %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ post.user }}</td>
+                    <td>{{ post.email }}</td>
+                    <td>{{ post.post }}</td>
+                    <td>{{ post.date }}</td>
+                    <td>{{ post.emotion }}</td>
+                    <td>
+                        {% if post.emotion == "Negative" %}
+                            <button class="btn btn-danger send-notification" data-email="{{ post.email }}">Send Notification</button>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="7" class="text-center">No posts available</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).on('click', '.send-notification', function () {
+        const email = $(this).data('email');
+        if (email) {
+            $.ajax({
+                url: "{% url 'Admin:SendNotification' %}", 
+                method: "POST",
+                data: {
+                    email: email,
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function (response) {
+                    alert(response.success || "Notification sent!");
+                },
+                error: function (xhr) {
+                    const error = xhr.responseJSON.error || "An error occurred";
+                    alert(error);
+                }
+            });
+        } else {
+            alert("Invalid email address");
+        }
+    });
+</script>
+
+{% endblock %}

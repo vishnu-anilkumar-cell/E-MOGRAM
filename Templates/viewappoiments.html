@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}All Doctors{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Appoinments List</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Doctor</th>
+                <th>Book To</th>
+                <th>Booking Done on</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doctor in users %}
+                <tr>
+                    <td>{{ doctor.User.name }}</td>
+                    <td>{{ doctor.doctor.name }}</td>
+                    <td>{{ doctor.bookdate }}</td>
+                    <td>{{ doctor.datetime }}</td>
+
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="11" class="text-center">No bookings available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
